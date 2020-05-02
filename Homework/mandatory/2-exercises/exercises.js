@@ -13,9 +13,31 @@
  *      .....
  * </div>
  */
+let content = document.querySelector("#content");
+
+
+
+
 function exerciseOne(arrayOfPeople) {
-  let content = document.querySelector("#content");
+  for (i = 0; i < arrayOfPeople.length; i++) {
+
+    var newHone = document.createElement('h1');
+    newHone.innerText = arrayOfPeople[i].name;
+
+    var newHtwo = document.createElement('h2');
+    newHtwo.innerText = arrayOfPeople[i].job;
+
+    content.appendChild(newHone);
+    content.appendChild(newHtwo);
+
+
+  }
+
 }
+
+
+
+
 
 /**
  *
@@ -24,9 +46,23 @@ function exerciseOne(arrayOfPeople) {
  * All of your HTML should go inside the Div tag with the id "content".
  *
  */
+
+
+//Write your code in here
 function exerciseTwo(shopping) {
-  //Write your code in here
+  var ul = document.createElement('ul');
+
+
+  for (i = 0; i < shopping.length; i++) {
+    var li = document.createElement('li');
+    li.innerHTML = shopping[i];
+    ul.appendChild(li);
+    content.appendChild(ul);
+
+  }
+
 }
+
 
 /**
     I'd like to display my three favorite books inside a nice webpage!
@@ -58,7 +94,54 @@ function exerciseTwo(shopping) {
     The end result should look something like this: https://hyf-js2-week1-makeme-ex1-demo.herokuapp.com/
 **/
 function exerciseThree(books) {
-  //Write your code in here
+  let h1 = document.createElement('h1');
+  h1.innerText = 'Book List';
+  content.appendChild(h1);
+
+  let ul = document.createElement('ul');
+  ul.style.listStyleType = 'none';
+  content.appendChild(ul);
+
+
+  //images links creation in an array 
+  var imageLink1 = "https://images-na.ssl-images-amazon.com/images/I/410RTQezHYL._SY291_BO1,204,203,200_QL40_ML2_.jpg"
+  var imageLink2 = "https://images-na.ssl-images-amazon.com/images/I/71HMyqG6MRL.jpg"
+  var imageLink3 = "https://images-na.ssl-images-amazon.com/images/I/41uPjEenkFL._SX342_QL70_ML2_.jpg"
+  var imageLinks = [imageLink1, imageLink2, imageLink3];
+
+  for (i = 0; i < books.length; i++) {
+    let pElement = document.createElement('p');
+    pElement.innerText = books[i].title + " " + " -" + books[i].author;
+    pElement.style.fontSize = '13px';
+    pElement.style.marginTop = '0px';
+    pElement.style.padding = '13px'
+
+
+    var li = document.createElement('li');
+    li.style.width = '300px';
+    li.style.margin = '10px'
+    li.style.float = 'left';
+
+
+
+    let image = document.createElement('img');
+    image.style.height = '250px';
+    image.style.marginTop = '15px';
+    image.style.height = '230px';
+    image.src = imageLinks[i];
+    pElement.append(image);
+
+
+
+    li.appendChild(pElement);
+    ul.appendChild(li);
+
+    if (books[i].alreadyRead) {
+      li.style.background = 'green';
+    } else li.style.background = 'red';
+
+  }
+
 }
 
 //
@@ -71,10 +154,18 @@ function exerciseThree(books) {
 //
 //
 
-let people = [
-  { name: "Chris", job: "Teacher" },
-  { name: "Joanna", job: "Student" },
-  { name: "Boris", job: "Prime Minister" }
+let people = [{
+    name: "Chris",
+    job: "Teacher"
+  },
+  {
+    name: "Joanna",
+    job: "Student"
+  },
+  {
+    name: "Boris",
+    job: "Prime Minister"
+  }
 ];
 
 exerciseOne(people);
@@ -83,8 +174,7 @@ let shopping = ["Milk", "Break", "Eggs", "A Dinosaur", "Cake", "Sugar", "Tea"];
 
 exerciseTwo(shopping);
 
-const books = [
-  {
+const books = [{
     title: "The Design of Everyday Things",
     author: "Don Norman",
     alreadyRead: false
